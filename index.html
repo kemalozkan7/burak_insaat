@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burak İnşaat — Alanya & Antalya'da Güvenle İnşa Ediyoruz</title>
+  <meta name="description" content="Burak İnşaat: Alanya ve Antalya'da rezidans, villa ve apartman projeleri. Kat karşılığı inşaat, kentsel dönüşüm ve anahtar teslim çözümler.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+
+  <header id="site-header"></header>
+
+  <!-- HERO -->
+  <section class="hero" data-hero>
+    <div class="hero__slide"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80" alt="Şantiye ve vinç"></div>
+    <div class="hero__slide"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80" alt="Modern rezidans"></div>
+    <div class="hero__slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80" alt="Modern villa"></div>
+
+    <div class="container hero__in">
+      <span class="hero__badge"><span class="dot"></span> 4 aktif şantiye · 2026</span>
+      <h1>Sağlam temeller,<br><em>değerli yaşamlar</em> inşa ediyoruz.</h1>
+      <p class="lead">Alanya ve Antalya'da rezidans, villa ve apartman projeleri. 17 yıllık tecrübe, zamanında teslim garantisi ve şeffaf şantiye takibi.</p>
+      <div class="hero__actions">
+        <a class="btn btn--gold" href="projeler.html">Projeleri İncele <i data-icon="arrow"></i></a>
+        <a class="btn btn--ghost-light" href="iletisim.html#teklif">Ücretsiz Keşif Talebi</a>
+      </div>
+
+      <form class="search" data-hero-search>
+        <div class="field">
+          <label for="s-loc">Konum</label>
+          <select id="s-loc" name="loc"><option value="">Hepsi</option></select>
+        </div>
+        <div class="field">
+          <label for="s-status">Proje Durumu</label>
+          <select id="s-status" name="status">
+            <option value="">Hepsi</option>
+            <option value="ongoing">Devam Eden</option>
+            <option value="sale">Satılık</option>
+            <option value="completed">Tamamlanan</option>
+            <option value="soon">Yakında</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="s-type">Tip</label>
+          <select id="s-type" name="type">
+            <option value="">Hepsi</option>
+            <option value="residence">Rezidans</option>
+            <option value="villa">Villa</option>
+            <option value="apartment">Apartman</option>
+            <option value="commercial">Ticari</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="s-rooms">Oda</label>
+          <select id="s-rooms" name="rooms">
+            <option value="">Hepsi</option>
+            <option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option>
+          </select>
+        </div>
+        <button class="btn btn--dark" type="submit"><i data-icon="search"></i> Ara</button>
+      </form>
+    </div>
+
+    <div class="hero__nav">
+      <button data-hero-prev aria-label="Önceki"><i data-icon="arrowL"></i></button>
+      <button data-hero-next aria-label="Sonraki"><i data-icon="arrow"></i></button>
+    </div>
+    <div class="hero__dots"></div>
+  </section>
+
+  <!-- İSTATİSTİK -->
+  <section class="stats">
+    <div class="container stats__grid" id="stats"></div>
+  </section>
+
+  <!-- DEVAM EDEN PROJELER -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Şantiyeden Canlı</span>
+          <h2>Devam Eden Projeler</h2>
+          <p>Her projede haftalık güncellenen ilerleme yüzdesi ve teslim takvimi.</p>
+        </div>
+        <a class="link" href="projeler.html?status=ongoing">Tümünü gör <i data-icon="arrow"></i></a>
+      </div>
+      <div class="grid grid--4" id="ongoing"></div>
+    </div>
+  </section>
+
+  <!-- SATILIK -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Fırsatlar</span>
+          <h2>Satılık Konutlar</h2>
+          <p>Hemen teslim ya da teslime yakın seçili daire ve villalar.</p>
+        </div>
+        <a class="link" href="projeler.html?status=sale">Tümünü gör <i data-icon="arrow"></i></a>
+      </div>
+      <div class="grid grid--4" id="forsale"></div>
+    </div>
+  </section>
+
+  <!-- HOŞ GELDİNİZ -->
+  <section class="section">
+    <div class="container welcome">
+      <div class="welcome__text reveal">
+        <span class="eyebrow">Burak İnşaat'a Hoş Geldiniz</span>
+        <h2>Akdeniz'in en değerli kıyısında, güvenle ev sahibi olun</h2>
+        <p><strong>Alanya</strong> yalnızca güneş ve deniz değil; her yıl artan değeriyle Türkiye'nin en güçlü yatırım bölgelerinden biri. 2009'dan bu yana bu bölgede <strong>42 proje</strong> teslim ettik ve her birinde aynı ilkeyle çalıştık: söz verdiğimiz tarihte, söz verdiğimiz kalitede.</p>
+        <p>Kompakt bir 1+1'den deniz manzaralı bir villaya, kat karşılığı arsa geliştirmeden kentsel dönüşüme kadar aradığınız her çözüm tek çatı altında.</p>
+        <a class="link" href="hakkimizda.html">Hikayemizi okuyun <i data-icon="arrow"></i></a>
+      </div>
+      <aside class="site-card reveal">
+        <div class="site-card__head"><span class="dot"></span> Şantiye durumu · Bu ay</div>
+        <ul>
+          <li><span>Aktif şantiye</span><strong>4</strong></li>
+          <li><span>Toplam inşaat alanı</span><strong>21.400 m²</strong></li>
+          <li><span>Sahada çalışan ekip</span><strong>86 kişi</strong></li>
+          <li><span>En yakın teslim</span><strong>Avsallar · 2026 Q4</strong></li>
+        </ul>
+        <a class="btn btn--gold btn--sm" href="projeler.html?status=ongoing">Şantiye raporlarını gör <i data-icon="arrow"></i></a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- HİZMETLER -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Neler Yapıyoruz</span>
+          <h2>Hizmetlerimiz</h2>
+        </div>
+        <a class="link" href="hizmetler.html">Tümünü gör <i data-icon="arrow"></i></a>
+      </div>
+      <div class="grid grid--3" id="services"></div>
+    </div>
+  </section>
+
+  <!-- SÜREÇ -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head center reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="eyebrow eyebrow--light">Nasıl Çalışıyoruz</span>
+          <h2>Keşiften teslime 5 adım</h2>
+          <p style="margin-inline:auto">Her adımda ne zaman, ne olacağını önceden bilirsiniz. Sürprizsiz, şeffaf bir süreç.</p>
+        </div>
+      </div>
+      <div class="process" id="process"></div>
+    </div>
+  </section>
+
+  <!-- NEDEN BİZ -->
+  <section class="section">
+    <div class="container why">
+      <div class="why__media reveal">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80" alt="Mühendis şantiyede">
+        <div class="why__badge"><strong>17+</strong><span>Yıllık Deneyim</span></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Neden Burak İnşaat</span>
+        <h2>Bir inşaat firmasından fazlası: yaşam ortağınız</h2>
+        <p class="muted">Bizi tercih eden aileler ve yatırımcılar için fark yaratan dört ilke.</p>
+        <div class="features">
+          <div class="feature"><div class="feature__icon"><i data-icon="calendar"></i></div><div><h4>Zamanında Teslim Garantisi</h4><p>Teslim tarihi sözleşmede yazar; gecikme halinde kira bedeli tarafımızca ödenir.</p></div></div>
+          <div class="feature"><div class="feature__icon"><i data-icon="camera"></i></div><div><h4>Fotoğraflı Şantiye Takibi</h4><p>Her hafta dairenizin ilerlemesini fotoğraf ve yüzdeyle mobil raporda görürsünüz.</p></div></div>
+          <div class="feature"><div class="feature__icon"><i data-icon="shield"></i></div><div><h4>2 Yıl İşçilik Garantisi</h4><p>Teslim sonrası tüm işçilik kusurları ücretsiz giderilir; satış sonrası ekibimiz tek telefon uzağınızda.</p></div></div>
+          <div class="feature"><div class="feature__icon"><i data-icon="award"></i></div><div><h4>A Sınıfı Malzeme</h4><p>Deprem yönetmeliğine tam uyum, enerji kimlik belgesi ve markalı malzeme listesi her projede standart.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERANSLAR -->
+  <section class="section section--cream" data-testimonials>
+    <div class="container">
+      <div class="section-head center reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="eyebrow">Müşterilerimiz Anlatıyor</span>
+          <h2>Güven, teslimden sonra başlar</h2>
+        </div>
+      </div>
+      <div class="testi-wrap reveal">
+        <div class="testi__track"></div>
+        <div class="testi__dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = function ({ $, icon }) {
+      $("#stats").innerHTML = BI.stats.map(s =>
+        `<div class="stat"><strong data-count="${s.value}" data-suffix="${s.suffix}">0</strong><span>${s.label}</span></div>`).join("");
+
+      $("#ongoing").innerHTML = BI.projects.filter(p => p.status === "ongoing").slice(0, 4).map(BI.projectCard).join("");
+      const sale = BI.projects.filter(p => p.status === "sale");
+      const others = BI.projects.filter(p => p.status !== "sale" && p.price).sort((a, b) => b.progress - a.progress);
+      $("#forsale").innerHTML = [...sale, ...others].slice(0, 4).map(BI.projectCard).join("");
+
+      $("#services").innerHTML = BI.services.map((s, i) => `
+        <a class="service reveal" href="hizmetler.html#hizmet-${i + 1}">
+          <div class="service__icon">${icon(s.icon)}</div>
+          <h3>${s.title}</h3>
+          <p>${s.text}</p>
+          <span class="link">Detaylar ${icon("arrow")}</span>
+        </a>`).join("");
+
+      $("#process").innerHTML = BI.process.map(p => `
+        <div class="step reveal"><div class="step__num">${p.step}</div><h3>${p.title}</h3><p>${p.text}</p></div>`).join("");
+    };
+  </script>
+</body>
+</html>

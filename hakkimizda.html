@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkımızda — Burak İnşaat</title>
+  <meta name="description" content="2009'dan bu yana Alanya ve Antalya'da güvenle inşa eden Burak İnşaat'ın hikayesi, değerleri ve ekibi.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="about">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>Hakkımızda</span></div>
+      <h1>Hakkımızda</h1>
+      <p>Bir aile şirketi olarak başladık; bugün 1.250'den fazla ailenin evini inşa etmiş bir ekip olarak aynı titizlikle çalışıyoruz.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-grid">
+      <div class="reveal">
+        <span class="eyebrow">Hikayemiz</span>
+        <h2>2009'dan bugüne, Alanya'nın siluetinde imzamız var</h2>
+        <p>Burak İnşaat, 2009 yılında Alanya'da tek bir apartman projesiyle yola çıktı. İlk günden bu yana değişmeyen ilkemiz basit: <strong>söz verdiğimiz tarihte, söz verdiğimiz kalitede teslim etmek.</strong></p>
+        <p>Bugün rezidans, villa, apartman ve ticari projelerden oluşan 42 tamamlanmış projeyle; kat karşılığı geliştirmeden kentsel dönüşüme uzanan geniş bir hizmet yelpazesi sunuyoruz. Kendi mimar, mühendis ve saha ekiplerimizle çalışıyor, taşeron bağımlılığını en aza indiriyoruz.</p>
+        <p>Yurt dışında yaşayan yatırımcılarımız için geliştirdiğimiz <strong>fotoğraflı şantiye takip sistemi</strong>, sektörde şeffaflığın yeni standardı oldu.</p>
+        <div class="hero__actions" style="margin:1.4rem 0 0">
+          <a class="btn btn--gold" href="projeler.html">Projelerimiz <i data-icon="arrow"></i></a>
+          <a class="btn btn--ghost" href="iletisim.html">Bize Ulaşın</a>
+        </div>
+      </div>
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Şantiye">
+        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" alt="Mühendis ekibi">
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container stats__grid" id="stats"></div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head center reveal" style="justify-content:center;text-align:center">
+        <div><span class="eyebrow">Değerlerimiz</span><h2>Bizi biz yapan dört ilke</h2></div>
+      </div>
+      <div class="values">
+        <div class="value reveal"><div class="feature__icon"><i data-icon="shield"></i></div><h3>Güven</h3><p>Sözleşmede yazan her madde, sahada aynen uygulanır. Gizli maliyet yok, sürpriz yok.</p></div>
+        <div class="value reveal"><div class="feature__icon"><i data-icon="award"></i></div><h3>Kalite</h3><p>A sınıfı malzeme, deprem yönetmeliğine tam uyum ve her projede bağımsız yapı denetimi.</p></div>
+        <div class="value reveal"><div class="feature__icon"><i data-icon="camera"></i></div><h3>Şeffaflık</h3><p>Haftalık fotoğraflı ilerleme raporu ve açık hakediş planıyla her adımı görürsünüz.</p></div>
+        <div class="value reveal"><div class="feature__icon"><i data-icon="users"></i></div><h3>Süreklilik</h3><p>Teslimden sonra da yanınızdayız: 2 yıl işçilik garantisi ve satış sonrası ekibi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head center reveal" style="justify-content:center;text-align:center">
+        <div><span class="eyebrow eyebrow--light">Kilometre Taşları</span><h2>Yıllar içinde Burak İnşaat</h2></div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal" style="justify-content:center;text-align:center">
+        <div><span class="eyebrow">Ekibimiz</span><h2>Projelerin arkasındaki insanlar</h2></div>
+      </div>
+      <div class="team" id="team"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = function ({ $ }) {
+      $("#stats").innerHTML = BI.stats.map(s => `<div class="stat"><strong data-count="${s.value}" data-suffix="${s.suffix}">0</strong><span>${s.label}</span></div>`).join("");
+      $("#timeline").innerHTML = BI.milestones.map(m => `<div class="milestone reveal"><strong>${m.year}</strong><p>${m.text}</p></div>`).join("");
+      $("#team").innerHTML = BI.team.map(t => `<div class="member reveal"><img src="${t.img}" alt="${t.name}"><strong>${t.name}</strong><span>${t.role}</span></div>`).join("");
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim & Teklif — Burak İnşaat</title>
+  <meta name="description" content="Burak İnşaat ile iletişime geçin; ücretsiz keşif ve teklif talebinde bulunun.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>İletişim</span></div>
+      <h1>İletişim & Teklif</h1>
+      <p>Arsanız, projeniz ya da hayalinizdeki ev için ilk adımı atın. 24 saat içinde dönüş yapıyoruz.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="contact-cards" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="teklif" style="padding-top:2rem">
+    <div class="container contact-grid">
+      <div class="panel reveal">
+        <span class="eyebrow">Ücretsiz Keşif & Teklif</span>
+        <h2 style="font-size:1.6rem">Bize projenizden bahsedin</h2>
+        <p class="muted">Formu doldurun; uzman ekibimiz sizi arayıp keşif randevusu planlasın.</p>
+        <form data-form="quote" class="form-grid">
+          <div class="field"><label>Ad Soyad *</label><input name="name" required placeholder="Adınız Soyadınız"></div>
+          <div class="field"><label>Telefon *</label><input name="phone" type="tel" required placeholder="+90 5__ ___ __ __"></div>
+          <div class="field"><label>E-posta</label><input name="email" type="email" placeholder="ornek@mail.com"></div>
+          <div class="field">
+            <label>Konu *</label>
+            <select name="topic" required>
+              <option value="">Seçin</option>
+              <option>Konut satın alma</option>
+              <option>Kat karşılığı inşaat</option>
+              <option>Kentsel dönüşüm</option>
+              <option>Tadilat & dekorasyon</option>
+              <option>Mimari / statik proje</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="field"><label>Konum</label><select name="loc" id="c-loc"><option value="">Seçin</option></select></div>
+          <div class="field"><label>Bütçe (opsiyonel)</label>
+            <select name="budget"><option value="">Seçin</option><option>100.000 € altı</option><option>100.000 – 250.000 €</option><option>250.000 – 500.000 €</option><option>500.000 € üzeri</option></select>
+          </div>
+          <div class="field field--full"><label>Mesajınız</label><textarea name="msg" placeholder="Arsa büyüklüğü, istediğiniz daire tipi, zamanlama gibi detayları paylaşabilirsiniz."></textarea></div>
+          <label class="consent field--full"><input type="checkbox" required> KVKK Aydınlatma Metni'ni okudum; kişisel verilerimin talebimle ilgili iletişim amacıyla işlenmesini kabul ediyorum.</label>
+          <div class="field--full"><button class="btn btn--gold" type="submit">Teklif Talebi Gönder <i data-icon="arrow"></i></button></div>
+        </form>
+      </div>
+
+      <div class="contact-side">
+        <div class="panel panel--dark reveal">
+          <h3>Ofisimize bekleriz</h3>
+          <p id="addr"></p>
+          <p><i data-icon="clock"></i> <span id="hours"></span></p>
+          <a class="btn btn--gold btn--block" id="waBtn" href="#" target="_blank" rel="noopener"><i data-icon="whatsapp"></i> WhatsApp ile yaz</a>
+        </div>
+        <div class="map reveal" style="aspect-ratio:4/3">
+          <iframe src="https://www.google.com/maps?q=Alanya%20Antalya%20T%C3%BCrkiye&output=embed" loading="lazy" title="Ofis konumu" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = function ({ $, icon }) {
+      const C = BI.company;
+      $("#cards").innerHTML = [
+        ["phone", "Telefon", `<a href="tel:${C.phoneRaw}">${C.phone}</a>`],
+        ["mail", "E-posta", `<a href="mailto:${C.email}">${C.email}</a>`],
+        ["pin", "Adres", `<p>${C.address}</p>`],
+        ["clock", "Çalışma Saatleri", `<p>${C.hours}</p>`]
+      ].map(([i, t, v]) => `<div class="contact-card reveal"><div class="feature__icon">${icon(i)}</div><h4>${t}</h4>${v}</div>`).join("");
+      BI.locations.forEach(l => $("#c-loc").insertAdjacentHTML("beforeend", `<option>${l}</option>`));
+      $("#addr").textContent = C.address;
+      $("#hours").textContent = C.hours;
+      $("#waBtn").href = `https://wa.me/${C.whatsapp}`;
+    };
+  </script>
+</body>
+</html>
