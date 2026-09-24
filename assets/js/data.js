@@ -12,7 +12,7 @@ BI.company = {
   phoneRaw: "+905000000000",
   whatsapp: "905000000000",
   email: "info@burakinsaat.com",
-  address: "Örnek Mah. İnşaat Cad. No:1, 07400 Alanya / Antalya",
+  address: "Örnek Mah. İnşaat Cad. No:1, Lefkoşa / KKTC",
   hours: "Pzt – Cmt: 09:00 – 18:30",
   founded: 2009,
   social: {
@@ -24,14 +24,14 @@ BI.company = {
 };
 
 BI.locations = [
-  "Alanya – Merkez",
-  "Alanya – Mahmutlar",
-  "Alanya – Kestel",
-  "Alanya – Oba",
-  "Alanya – Avsallar",
-  "Alanya – Kargıcak",
-  "Antalya – Lara",
-  "Antalya – Konyaaltı"
+  "KKTC – Lefkoşa",
+  "KKTC – Gazimağusa",
+  "KKTC – Girne",
+  "KKTC – Güzelyurt",
+  "KKTC – İskele",
+  "KKTC – Tatlısu",
+  "KKTC – Esentepe",
+  "KKTC – Bafra"
 ];
 
 BI.statusLabels = {
@@ -55,7 +55,7 @@ BI.projects = [
   {
     id: "golden-park-residence",
     title: "Golden Park Residence",
-    location: "Alanya – Mahmutlar",
+    location: "KKTC – Girne",
     type: "residence",
     status: "ongoing",
     progress: 68,
@@ -75,7 +75,7 @@ BI.projects = [
       U("photo-1600573472592-401b489a3cdc")
     ],
     summary:
-      "Denize 400 m mesafede, akıllı ev altyapısı ve 5 yıldızlı otel konseptinde sosyal tesisleriyle Mahmutlar'ın yeni yaşam merkezi.",
+      "Denize 400 m mesafede, akıllı ev altyapısı ve 5 yıldızlı otel konseptinde sosyal tesisleriyle Girne'nin yeni yaşam merkezi.",
     features: [
       "Açık & kapalı yüzme havuzu",
       "Fitness, sauna ve buhar odası",
@@ -86,9 +86,9 @@ BI.projects = [
     ]
   },
   {
-    id: "seaside-villas-kargicak",
+    id: "seaside-villas-esentepe",
     title: "Seaside Villaları",
-    location: "Alanya – Kargıcak",
+    location: "KKTC – Esentepe",
     type: "villa",
     status: "sale",
     progress: 100,
@@ -108,7 +108,7 @@ BI.projects = [
       U("photo-1600210492486-724fe5c67fb0")
     ],
     summary:
-      "Panoramik deniz manzaralı, özel havuzlu ve bahçeli 8 adet müstakil villadan oluşan butik proje.",
+      "Akdeniz'e ve Beşparmak Dağları'na panoramik manzaralı, özel havuzlu ve bahçeli 8 adet müstakil villadan oluşan butik proje.",
     features: [
       "Özel yüzme havuzu",
       "Panoramik deniz manzarası",
@@ -119,9 +119,9 @@ BI.projects = [
     ]
   },
   {
-    id: "oba-life-apartmani",
-    title: "Oba Life Apartmanı",
-    location: "Alanya – Oba",
+    id: "iskele-life-apartmani",
+    title: "İskele Life Apartmanı",
+    location: "KKTC – İskele",
     type: "apartment",
     status: "completed",
     progress: 100,
@@ -144,9 +144,9 @@ BI.projects = [
     features: ["Yüzme havuzu", "Asansör", "Otopark", "Güvenlik", "Peyzajlı bahçe"]
   },
   {
-    id: "kestel-marina-suites",
-    title: "Kestel Marina Suites",
-    location: "Alanya – Kestel",
+    id: "girne-marina-suites",
+    title: "Girne Marina Suites",
+    location: "KKTC – Girne",
     type: "residence",
     status: "ongoing",
     progress: 35,
@@ -165,7 +165,7 @@ BI.projects = [
       U("photo-1600607687939-ce8a6c25118c")
     ],
     summary:
-      "Yatırım odaklı 1+1 ve 2+1 daireler; otel işletmeli kiralama garantisi seçeneğiyle.",
+      "Yatırım odaklı 1+1 ve 2+1 daireler; otel işletmeli kiralama garantisi seçeneğiyle Girne limanına 5 dakika mesafede.",
     features: [
       "Kiralama garantisi seçeneği",
       "Infinity havuz",
@@ -175,9 +175,9 @@ BI.projects = [
     ]
   },
   {
-    id: "avsallar-garden-homes",
-    title: "Avsallar Garden Homes",
-    location: "Alanya – Avsallar",
+    id: "bafra-garden-homes",
+    title: "Bafra Garden Homes",
+    location: "KKTC – Bafra",
     type: "villa",
     status: "ongoing",
     progress: 82,
@@ -192,13 +192,13 @@ BI.projects = [
     image: U("photo-1564013799919-ab600027ffc6"),
     gallery: [U("photo-1564013799919-ab600027ffc6"), U("photo-1600596542815-ffad4c1539a9")],
     summary:
-      "Doğayla iç içe, geniş bahçeli ikiz villalardan oluşan sakin bir yaşam alanı.",
+      "Doğayla iç içe, geniş bahçeli ikiz villalardan oluşan sakin bir yaşam alanı. Bafra turizm bölgesine 2 km mesafe.",
     features: ["Ortak havuz", "Özel bahçe", "Kapalı otopark", "Site güvenliği"]
   },
   {
-    id: "oba-panorama-residence",
-    title: "Oba Panorama Residence",
-    location: "Alanya – Oba",
+    id: "gazimağusa-panorama-residence",
+    title: "Gazimağusa Panorama Residence",
+    location: "KKTC – Gazimağusa",
     type: "residence",
     status: "ongoing",
     progress: 52,
@@ -213,13 +213,13 @@ BI.projects = [
     image: U("photo-1503387762-592deb58ef4e"),
     gallery: [U("photo-1503387762-592deb58ef4e"), U("photo-1600573472592-401b489a3cdc"), U("photo-1600121848594-d8644e57abab")],
     summary:
-      "Oba'nın yükselen bölgesinde, Toroslar ve deniz manzarasını aynı balkonda buluşturan 10 katlı rezidans.",
+      "Gazimağusa'nın yükselen bölgesinde, tarihi sur ve deniz manzarasını aynı balkonda buluşturan 10 katlı rezidans.",
     features: ["Açık havuz", "Fitness", "Kapalı otopark", "Güvenlik", "Çocuk oyun alanı", "Roof-top teras"]
   },
   {
-    id: "lara-business-center",
-    title: "Lara Business Center",
-    location: "Antalya – Lara",
+    id: "lefkosa-business-center",
+    title: "Lefkoşa Business Center",
+    location: "KKTC – Lefkoşa",
     type: "commercial",
     status: "completed",
     progress: 100,
@@ -238,9 +238,9 @@ BI.projects = [
     features: ["A+ ofis", "Akıllı bina yönetimi", "Kapalı otopark", "Konferans salonu"]
   },
   {
-    id: "merkez-prestij-konaklari",
-    title: "Merkez Prestij Konakları",
-    location: "Alanya – Merkez",
+    id: "guzelyurt-prestij-konaklari",
+    title: "Güzelyurt Prestij Konakları",
+    location: "KKTC – Güzelyurt",
     type: "apartment",
     status: "sale",
     progress: 100,
@@ -255,13 +255,13 @@ BI.projects = [
     image: U("photo-1600585154340-be6161a56a0c"),
     gallery: [U("photo-1600585154340-be6161a56a0c"), U("photo-1600210492486-724fe5c67fb0")],
     summary:
-      "Kızıl Kule'ye 10 dakika, hemen teslim, yüksek tavanlı ve geniş balkonlu daireler.",
+      "Güzelyurt'un tarihî merkezine 10 dakika, hemen teslim, yüksek tavanlı ve geniş balkonlu daireler.",
     features: ["Hemen teslim", "Geniş balkon", "Otopark", "Asansör", "Depo"]
   },
   {
-    id: "konyaalti-sky-tower",
-    title: "Konyaaltı Sky Tower",
-    location: "Antalya – Konyaaltı",
+    id: "tatlisu-sky-tower",
+    title: "Tatlısu Sky Tower",
+    location: "KKTC – Tatlısu",
     type: "residence",
     status: "soon",
     progress: 0,
@@ -276,7 +276,7 @@ BI.projects = [
     image: U("photo-1429497419816-9ca5cfb4571a"),
     gallery: [U("photo-1429497419816-9ca5cfb4571a")],
     summary:
-      "Konyaaltı sahiline hakim, 22 katlı ikonik rezidans projemiz için ön talep toplanıyor.",
+      "Tatlısu sahiline hakim, 22 katlı ikonik rezidans projemiz için ön talep toplanıyor.",
     features: ["Ön talep dönemi", "Deniz manzarası", "Sosyal tesis", "Ticari alanlar"]
   }
 ];
@@ -301,7 +301,7 @@ BI.services = [
     title: "Kentsel Dönüşüm",
     text: "Riskli yapı tespiti, proje geliştirme ve yeni binaya güvenli geçiş danışmanlığı.",
     detail:
-      "Deprem yönetmeliğine uygun, enerji verimli yeni yapılar için kat malikleriyle birlikte tüm hukuki ve teknik süreçleri yürütüyoruz."
+      "Güncel yönetmeliğe uygun, enerji verimli yeni yapılar için kat malikleriyle birlikte tüm hukuki ve teknik süreçleri yürütüyoruz."
   },
   {
     icon: "brush",
@@ -349,7 +349,7 @@ BI.testimonials = [
   },
   {
     name: "Elif & Murat S.",
-    role: "Seaside Villaları",
+    role: "Seaside Villaları – Villa Sahibi",
     text: "Malzeme kalitesi ve işçilik beklentimizin üzerindeydi. Satış sonrası ekibi hâlâ tek telefonla ulaşılabilir durumda."
   },
   {
@@ -366,11 +366,11 @@ BI.team = [
 ];
 
 BI.milestones = [
-  { year: "2009", text: "Burak İnşaat, Alanya'da kuruldu. İlk apartman projesi teslim edildi." },
+  { year: "2009", text: "Burak İnşaat, Kuzey Kıbrıs'ta kuruldu. İlk apartman projesi Lefkoşa'da teslim edildi." },
   { year: "2013", text: "İlk villa sitesi ve kat karşılığı modeliyle büyüme dönemi." },
-  { year: "2017", text: "Antalya merkezde ilk ticari proje: Lara Business Center." },
+  { year: "2017", text: "Lefkoşa merkezde ilk ticari proje: Lefkoşa Business Center." },
   { year: "2021", text: "Dijital şantiye takip sistemi devreye alındı." },
-  { year: "2024", text: "1.000. konut teslimi ve 22 katlı Sky Tower ön lansmanı." }
+  { year: "2024", text: "1.000. konut teslimi ve 22 katlı Tatlısu Sky Tower ön lansmanı." }
 ];
 
 BI.fmtPrice = (p) =>

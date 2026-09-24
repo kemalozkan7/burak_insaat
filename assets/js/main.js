@@ -127,7 +127,7 @@
       <div class="container footer__grid">
         <div class="footer__brand">
           <div class="footer__logo"><img src="assets/img/logo-full.png" alt="${C.name}"></div>
-          <p>${C.slogan} ${C.founded} yılından bu yana Alanya ve Antalya'da güvenle inşa ediyoruz.</p>
+          <p>${C.slogan} ${C.founded} yılından bu yana Kuzey Kıbrıs'ta güvenle inşa ediyoruz.</p>
           <ul class="footer__contact">
             <li>${icon("pin")}<span>${C.address}</span></li>
             <li>${icon("phone")}<a href="tel:${C.phoneRaw}">${C.phone}</a></li>
