@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetim — Burak İnşaat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="admin-app">
+  <aside class="admin-side">
+    <a class="brand" href="/"><strong>BURAK</strong><small>YÖNETİM</small></a>
+    <nav>
+      <button type="button" class="on" data-tab="tenders">İhaleler</button>
+      <button type="button" data-tab="listings">Emlaklar</button>
+    </nav>
+    <a class="btn btn--ghost-light btn--sm" href="/">Siteye dön</a>
+    <button type="button" class="btn btn--sm" id="logout">Çıkış</button>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-head">
+      <div>
+        <h1 id="title">İhaleler</h1>
+        <p id="stats" class="muted"></p>
+      </div>
+      <button class="btn btn--gold" type="button" id="newBtn">Yeni kayıt</button>
+    </header>
+    <div id="table"></div>
+  </main>
+
+  <dialog class="admin-modal" id="modal">
+    <form id="form" class="admin-form">
+      <h2 id="modalTitle">Yeni kayıt</h2>
+      <div id="fields"></div>
+      <p class="admin-error" id="formErr" hidden></p>
+      <div class="admin-actions">
+        <button type="button" class="btn btn--ghost" id="cancel">Vazgeç</button>
+        <button type="submit" class="btn btn--gold">Kaydet</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/assets/js/admin.js"></script>
+</body>
+</html>

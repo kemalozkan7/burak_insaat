@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hizmetler — Burak İnşaat</title>
+  <meta name="description" content="Konut projeleri, kat karşılığı inşaat, kentsel dönüşüm, tadilat, satış sonrası ve mimari proje hizmetleri.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="services">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>Hizmetler</span></div>
+      <h1>Hizmetlerimiz</h1>
+      <p>Arsa analizinden anahtar teslime, teslimden satış sonrasına kadar ihtiyacınız olan her şey tek çatı altında.</p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="grid grid--3" id="serviceCards"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" id="serviceRows"></div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head center" style="justify-content:center;text-align:center">
+        <div>
+          <span class="eyebrow eyebrow--light">Nasıl Çalışıyoruz</span>
+          <h2>Keşiften teslime 5 adım</h2>
+        </div>
+      </div>
+      <div class="process" id="process"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = function ({ $, icon }) {
+      const imgs = [
+        "photo-1541888946425-d81bb19240f5", "photo-1560518883-ce09059eeffa", "photo-1460317442991-0ec209397118",
+        "photo-1600210492486-724fe5c67fb0", "photo-1560250097-0b93528c311a", "photo-1503387762-592deb58ef4e"
+      ];
+      const bullets = [
+        ["Ruhsattan iskâna tüm resmi süreç", "Haftalık fotoğraflı ilerleme raporu", "Sözleşmeli teslim tarihi"],
+        ["Ücretsiz imar & getiri analizi", "Noter onaylı sözleşme", "Kat malikleri için şeffaf hakediş planı"],
+        ["Riskli yapı tespiti (ücretsiz ön inceleme)", "Kira yardımı & taşınma desteği süreç yönetimi", "Depreme dayanıklı yeni yapı"],
+        ["3D görselleştirme ile ön izleme", "Markalı malzeme & ustalık garantisi", "Anahtar teslim, temizlik dâhil"],
+        ["2 yıl işçilik garantisi", "Kiralama & aidat yönetimi", "Teknik bakım ve arıza hizmeti"],
+        ["Mimari + statik + mekanik + elektrik", "Belediye ruhsat takibi", "Enerji kimlik belgesi"]
+      ];
+      $("#serviceCards").innerHTML = BI.services.map((s, i) => `
+        <a class="service reveal" href="#hizmet-${i + 1}">
+          <div class="service__icon">${icon(s.icon)}</div>
+          <h3>${s.title}</h3><p>${s.text}</p>
+          <span class="link">Detaylar ${icon("arrow")}</span>
+        </a>`).join("");
+      $("#serviceRows").innerHTML = BI.services.map((s, i) => `
+        <div class="service-row" id="hizmet-${i + 1}">
+          <div class="service-row__media reveal"><img src="https://images.unsplash.com/${imgs[i]}?auto=format&fit=crop&w=1000&q=80" alt="${s.title}"></div>
+          <div class="reveal">
+            <div class="service-row__num">0${i + 1}</div>
+            <h2>${s.title}</h2>
+            <p>${s.detail}</p>
+            <ul class="check-list">${bullets[i].map(b => `<li>${icon("check")} ${b}</li>`).join("")}</ul>
+            <a class="btn btn--dark" href="iletisim.html#teklif">Bu hizmet için teklif al ${icon("arrow")}</a>
+          </div>
+        </div>`).join("");
+      $("#process").innerHTML = BI.process.map(p => `
+        <div class="step reveal"><div class="step__num">${p.step}</div><h3>${p.title}</h3><p>${p.text}</p></div>`).join("");
+    };
+  </script>
+</body>
+</html>

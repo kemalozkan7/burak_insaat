@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İhaleler — Burak İnşaat</title>
+  <meta name="description" content="İhale ile alınan gayrimenkullerin restorasyon öncesi ve sonrası halleri.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="tenders">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>İhaleler</span></div>
+      <h1>İhale Restorasyonları</h1>
+      <p>İhale ile aldığımız yapıların eski hali ile restore edilmiş yeni halini kaydırarak karşılaştırın.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:2.5rem">
+    <div class="container">
+      <div class="results-bar">
+        <div><strong id="count">0</strong> ihale kaydı</div>
+      </div>
+      <div class="grid grid--2" id="list"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = async function ({ $, icon }) {
+      const tenders = await BI.api("/api/tenders");
+      $("#count").textContent = tenders.length;
+      if (!tenders.length) {
+        $("#list").innerHTML = `<div class="empty">${icon("layers")}<p>Henüz ihale kaydı yok.</p></div>`;
+        return;
+      }
+      $("#list").innerHTML = tenders.map(BI.tenderCard).join("");
+      BI.bindComparisons();
+    };
+  </script>
+</body>
+</html>

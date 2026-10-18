@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeler — Burak İnşaat</title>
+  <meta name="description" content="Burak İnşaat'ın devam eden, tamamlanan ve satılık projeleri. Konum, tip ve oda sayısına göre filtreleyin.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="projects">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>Projeler</span></div>
+      <h1>Projelerimiz</h1>
+      <p>Devam eden şantiyelerimizden teslim edilmiş yaşam alanlarımıza kadar tüm portföyümüz. İlerleme yüzdeleri her hafta güncellenir.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <form class="filters" id="filters">
+        <div class="field">
+          <label for="f-q">Arama</label>
+          <input id="f-q" name="q" type="search" placeholder="Proje adı veya kod (BI-2401)">
+        </div>
+        <div class="field">
+          <label for="f-loc">Konum</label>
+          <select id="f-loc" name="loc"><option value="">Hepsi</option></select>
+        </div>
+        <div class="field">
+          <label for="f-status">Durum</label>
+          <select id="f-status" name="status">
+            <option value="">Hepsi</option>
+            <option value="ongoing">Devam Eden</option>
+            <option value="sale">Satılık</option>
+            <option value="completed">Tamamlanan</option>
+            <option value="soon">Yakında</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-type">Tip</label>
+          <select id="f-type" name="type">
+            <option value="">Hepsi</option>
+            <option value="residence">Rezidans</option>
+            <option value="villa">Villa</option>
+            <option value="apartment">Apartman</option>
+            <option value="commercial">Ticari</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-rooms">Oda</label>
+          <select id="f-rooms" name="rooms">
+            <option value="">Hepsi</option>
+            <option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option>
+          </select>
+        </div>
+        <button class="btn btn--ghost" type="reset" id="reset">Temizle</button>
+      </form>
+
+      <div class="results-bar">
+        <div><strong id="count">0</strong> proje listeleniyor</div>
+        <div class="chips" id="chips">
+          <button type="button" class="chip active" data-status="">Tümü</button>
+          <button type="button" class="chip" data-status="ongoing">Devam Eden</button>
+          <button type="button" class="chip" data-status="sale">Satılık</button>
+          <button type="button" class="chip" data-status="completed">Tamamlanan</button>
+          <button type="button" class="chip" data-status="soon">Yakında</button>
+        </div>
+        <div class="field" style="min-width:180px">
+          <select id="sort" aria-label="Sırala">
+            <option value="default">Öne çıkanlar</option>
+            <option value="price-asc">Fiyat: artan</option>
+            <option value="price-desc">Fiyat: azalan</option>
+            <option value="progress">İlerleme: en yüksek</option>
+            <option value="area">Alan: en büyük</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid--3" id="results"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = function ({ $, $$, icon, hydrateIcons }) {
+      const form = $("#filters"), results = $("#results"), sort = $("#sort");
+      BI.locations.forEach(l => $("#f-loc").insertAdjacentHTML("beforeend", `<option value="${l}">${l}</option>`));
+
+      // URL parametrelerini forma uygula
+      const qs = new URLSearchParams(location.search);
+      ["q", "loc", "status", "type", "rooms"].forEach(k => { if (qs.get(k) && form.elements[k]) form.elements[k].value = qs.get(k); });
+
+      function render() {
+        const f = Object.fromEntries(new FormData(form));
+        let list = BI.projects.filter(p =>
+          (!f.q || (p.title + " " + p.code).toLowerCase().includes(f.q.toLowerCase())) &&
+          (!f.loc || p.location === f.loc) &&
+          (!f.status || p.status === f.status) &&
+          (!f.type || p.type === f.type) &&
+          (!f.rooms || p.rooms.includes(f.rooms))
+        );
+        const s = sort.value;
+        if (s === "price-asc") list.sort((a, b) => (a.price ?? 1e12) - (b.price ?? 1e12));
+        if (s === "price-desc") list.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
+        if (s === "progress") list.sort((a, b) => b.progress - a.progress);
+        if (s === "area") list.sort((a, b) => b.area - a.area);
+        if (s === "default") list.sort((a, b) => (b.featured === true) - (a.featured === true));
+
+        $("#count").textContent = list.length;
+        $$("#chips .chip").forEach(c => c.classList.toggle("active", c.dataset.status === (f.status || "")));
+        results.innerHTML = list.length
+          ? list.map(BI.projectCard).join("")
+          : `<div class="empty">${icon("search")}<h3>Sonuç bulunamadı</h3><p>Filtreleri değiştirerek tekrar deneyin veya <a class="link" href="iletisim.html">bize ulaşın</a>.</p></div>`;
+        results.querySelectorAll(".reveal").forEach(e => e.classList.add("in"));
+
+        // URL'i güncelle (paylaşılabilir filtre)
+        const p = new URLSearchParams(Object.entries(f).filter(([, v]) => v));
+        history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p : ""));
+      }
+
+      form.addEventListener("input", render);
+      form.addEventListener("submit", e => { e.preventDefault(); render(); });
+      form.addEventListener("reset", () => setTimeout(render));
+      sort.addEventListener("change", render);
+      $("#chips").addEventListener("click", e => {
+        const c = e.target.closest(".chip"); if (!c) return;
+        form.elements.status.value = c.dataset.status; render();
+      });
+      render();
+    };
+  </script>
+</body>
+</html>

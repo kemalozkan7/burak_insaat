@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emlak Detayı — Burak İnşaat</title>
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="listings">
+
+  <header id="site-header"></header>
+
+  <section class="section" style="padding-top:2rem">
+    <div class="container">
+      <div class="crumbs" style="color:var(--muted)"><a href="index.html">Ana Sayfa</a><span><a href="emlaklar.html">Emlaklar</a></span><span id="crumb"></span></div>
+      <div class="detail" id="detail"></div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Diğer İlanlar</span><h2>İlginizi çekebilir</h2></div>
+        <a class="link" href="emlaklar.html">Tümünü gör <i data-icon="arrow"></i></a>
+      </div>
+      <div class="grid grid--3" id="related"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = async function ({ $, $$, icon }) {
+      const id = new URLSearchParams(location.search).get("id");
+      const p = await BI.api("/api/listings/" + encodeURIComponent(id || ""));
+      if (!p) {
+        $("#detail").innerHTML = `<div class="empty">${icon("home")}<p>İlan bulunamadı.</p></div>`;
+        return;
+      }
+      document.title = p.title + " — Burak İnşaat";
+      $("#crumb").textContent = p.title;
+      const gallery = (p.gallery && p.gallery.length ? p.gallery : [p.image]);
+      $("#detail").innerHTML = `
+        <div>
+          <div class="gallery__main"><img id="main-img" src="${gallery[0]}" alt="${p.title}">
+            <span class="badge badge--${p.status}">${BI.listingStatus[p.status] || p.status}</span>
+            <span class="gallery__count">${icon("camera")} 1 / ${gallery.length}</span>
+          </div>
+          <div class="gallery__thumbs">${gallery.map((g, i) => `<button type="button" class="${i===0?"active":""}" data-src="${g}"><img src="${g}" alt=""></button>`).join("")}</div>
+          <div class="detail__title">
+            <div>
+              <span class="card__loc">${icon("pin")} ${p.location}</span>
+              <h1>${p.title}</h1>
+            </div>
+            <div class="detail__price"><strong>${BI.fmtMoney(p.price, p.currency)}</strong><span>${p.status === "rent" ? "aylık kira" : "satış fiyatı"}</span></div>
+          </div>
+          <div class="spec-grid">
+            <div class="spec">${icon("bed")}<div><small>Oda</small><strong>${p.rooms || "—"}</strong></div></div>
+            <div class="spec">${icon("area")}<div><small>Alan</small><strong>${p.area ? p.area.toLocaleString("tr-TR") + " m²" : "—"}</strong></div></div>
+            <div class="spec">${icon("layers")}<div><small>Kat</small><strong>${p.floor || "—"}</strong></div></div>
+            <div class="spec">${icon("home")}<div><small>Tip</small><strong>${BI.listingTypes[p.type] || p.type}</strong></div></div>
+          </div>
+          <h2>İlan açıklaması</h2>
+          <p class="detail__text">${p.description || ""}</p>
+        </div>
+        <aside class="sidebar">
+          <div class="panel">
+            <h3>Bu ilan için bilgi alın</h3>
+            <form data-form="inquiry" data-kind="listing" data-ref="${p.id}">
+              <div class="field"><label>Ad Soyad</label><input name="name" required></div>
+              <div class="field"><label>Telefon</label><input name="phone" required></div>
+              <div class="field"><label>Mesaj</label><textarea name="message">Merhaba, ${p.title} ilanı hakkında bilgi almak istiyorum.</textarea></div>
+              <button class="btn btn--gold btn--block" type="submit">Gönder</button>
+            </form>
+          </div>
+        </aside>`;
+      $$(".gallery__thumbs button").forEach((btn, i, all) => btn.addEventListener("click", () => {
+        $("#main-img").src = btn.dataset.src;
+        all.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        $(".gallery__count").innerHTML = `${icon("camera")} ${i + 1} / ${all.length}`;
+      }));
+      const all = await BI.api("/api/listings");
+      $("#related").innerHTML = all.filter(x => x.id !== p.id).slice(0, 3).map(BI.listingCard).join("");
+    };
+  </script>
+</body>
+</html>

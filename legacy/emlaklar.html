@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emlaklar — Burak İnşaat</title>
+  <meta name="description" content="Burak İnşaat emlak ilanları: satılık ve kiralık daire, villa, arsa ve dükkan.">
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="listings">
+
+  <header id="site-header"></header>
+
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80" alt="">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Ana Sayfa</a><span>Emlaklar</span></div>
+      <h1>Emlak İlanları</h1>
+      <p>Satılık ve kiralık konut, villa, arsa ve ticari gayrimenkuller.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <form class="filters filters--emlak" id="filters">
+        <div class="field">
+          <label for="f-q">Arama</label>
+          <input id="f-q" name="q" type="search" placeholder="Başlık veya konum">
+        </div>
+        <div class="field">
+          <label for="f-loc">Konum</label>
+          <select id="f-loc" name="loc"><option value="">Hepsi</option></select>
+        </div>
+        <div class="field">
+          <label for="f-status">İlan tipi</label>
+          <select id="f-status" name="status">
+            <option value="">Hepsi</option>
+            <option value="sale">Satılık</option>
+            <option value="rent">Kiralık</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-type">Gayrimenkul</label>
+          <select id="f-type" name="type">
+            <option value="">Hepsi</option>
+            <option value="apartment">Daire</option>
+            <option value="villa">Villa</option>
+            <option value="land">Arsa</option>
+            <option value="commercial">Ticari</option>
+          </select>
+        </div>
+        <button class="btn btn--ghost" type="reset" id="reset">Temizle</button>
+      </form>
+
+      <div class="results-bar">
+        <div><strong id="count">0</strong> ilan listeleniyor</div>
+        <div class="chips" id="chips">
+          <button type="button" class="chip active" data-status="">Tümü</button>
+          <button type="button" class="chip" data-status="sale">Satılık</button>
+          <button type="button" class="chip" data-status="rent">Kiralık</button>
+        </div>
+      </div>
+      <div class="grid grid--3" id="list"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = async function ({ $, $$, icon }) {
+      const loc = $("#f-loc");
+      BI.locations.forEach(l => loc.insertAdjacentHTML("beforeend", `<option value="${l}">${l}</option>`));
+      const params = new URLSearchParams(location.search);
+      ["q", "loc", "status", "type"].forEach(k => { if (params.get(k) && $(`[name=${k}]`)) $(`[name=${k}]`).value = params.get(k); });
+
+      const all = await BI.api("/api/listings");
+      const apply = () => {
+        const f = Object.fromEntries(new FormData($("#filters")));
+        const chip = $(".chip.active")?.dataset.status;
+        const status = chip || f.status;
+        let rows = all.filter(x => {
+          if (f.q && !(`${x.title} ${x.location}`.toLowerCase().includes(f.q.toLowerCase()))) return false;
+          if (f.loc && x.location !== f.loc) return false;
+          if (status && x.status !== status) return false;
+          if (f.type && x.type !== f.type) return false;
+          return true;
+        });
+        $("#count").textContent = rows.length;
+        $("#list").innerHTML = rows.length
+          ? rows.map(BI.listingCard).join("")
+          : `<div class="empty">${icon("home")}<p>Bu kriterlere uygun ilan yok.</p></div>`;
+      };
+
+      $("#filters").addEventListener("input", apply);
+      $("#filters").addEventListener("change", apply);
+      $("#reset").addEventListener("click", () => setTimeout(() => {
+        $$(".chip").forEach(c => c.classList.toggle("active", !c.dataset.status));
+        apply();
+      }, 0));
+      $$("#chips .chip").forEach(c => c.addEventListener("click", () => {
+        $$("#chips .chip").forEach(x => x.classList.remove("active"));
+        c.classList.add("active");
+        $("#f-status").value = c.dataset.status;
+        apply();
+      }));
+      apply();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetim Girişi — Burak İnşaat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="admin-login">
+  <form class="admin-card" id="login">
+    <p class="eyebrow">Burak İnşaat</p>
+    <h1>Yönetim paneli</h1>
+    <p class="muted">İhale restorasyonları ve emlak ilanlarını buradan yönetin.</p>
+    <div class="field"><label>Kullanıcı adı</label><input name="user" required autocomplete="username"></div>
+    <div class="field"><label>Şifre</label><input name="password" type="password" required autocomplete="current-password"></div>
+    <p class="admin-error" id="err" hidden></p>
+    <button class="btn btn--gold btn--block" type="submit">Giriş yap</button>
+  </form>
+  <script>
+    document.getElementById("login").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const err = document.getElementById("err");
+      err.hidden = true;
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user: fd.get("user"), password: fd.get("password") })
+      });
+      if (res.ok) location.href = "/admin";
+      else {
+        const data = await res.json().catch(() => ({}));
+        err.textContent = data.error || "Giriş başarısız";
+        err.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İhale Detayı — Burak İnşaat</title>
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="tenders">
+
+  <header id="site-header"></header>
+
+  <section class="section" style="padding-top:2rem">
+    <div class="container" id="detail"></div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Diğer İhaleler</span><h2>Benzer restorasyonlar</h2></div>
+        <a class="link" href="ihaleler.html">Tümünü gör <i data-icon="arrow"></i></a>
+      </div>
+      <div class="grid grid--2" id="related"></div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    BI.onPage = async function ({ $, icon }) {
+      const id = new URLSearchParams(location.search).get("id");
+      const item = await BI.api("/api/tenders/" + encodeURIComponent(id || ""));
+      if (!item) {
+        $("#detail").innerHTML = `<div class="empty">${icon("layers")}<p>İhale bulunamadı.</p><a class="link" href="ihaleler.html">Listeye dön</a></div>`;
+        return;
+      }
+      document.title = item.title + " — Burak İnşaat";
+      $("#detail").innerHTML = `
+        <div class="crumbs" style="color:var(--muted)"><a href="index.html">Ana Sayfa</a><span><a href="ihaleler.html">İhaleler</a></span><span>${item.title}</span></div>
+        <div class="detail detail--tender">
+          <div>
+            ${BI.comparisonMarkup(item, "ba--xl")}
+            <div class="detail__title">
+              <div>
+                <span class="card__loc">${icon("pin")} ${item.location || ""} ${item.year ? "· " + item.year : ""}</span>
+                <h1>${item.title}</h1>
+              </div>
+            </div>
+            <h2>Proje açıklaması</h2>
+            <p class="detail__text">${item.description || ""}</p>
+          </div>
+          <aside class="sidebar">
+            <div class="panel">
+              <h3>Bu restorasyon hakkında bilgi alın</h3>
+              <form data-form="inquiry" data-kind="tender" data-ref="${item.id}">
+                <div class="field"><label>Ad Soyad</label><input name="name" required></div>
+                <div class="field"><label>Telefon</label><input name="phone" required></div>
+                <div class="field"><label>Mesaj</label><textarea name="message" placeholder="Sorunuz"></textarea></div>
+                <button class="btn btn--gold btn--block" type="submit">Gönder</button>
+              </form>
+            </div>
+          </aside>
+        </div>`;
+      BI.bindComparisons();
+      const all = await BI.api("/api/tenders");
+      $("#related").innerHTML = all.filter(t => t.id !== item.id).slice(0, 2).map(BI.tenderCard).join("");
+      BI.bindComparisons();
+    };
+  </script>
+</body>
+</html>
